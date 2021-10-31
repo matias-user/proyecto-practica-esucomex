@@ -1,0 +1,24 @@
+<p-card>
+    <p-card header="Login" 
+        class="flex flex-row justify-content-center card-container" >
+        
+        <span class="p-input-icon-left">
+            <i class="pi pi-user"></i>
+            <input type="text" pInputText placeholder="Correo" [(ngModel)]="usuario.email">         
+        </span>
+
+        <span class="p-input-icon-left block mt-2">
+            <i class="pi pi-lock"></i>
+            <input class="" type="password" pPassword placeholder="Contraseña" [(ngModel)]="usuario.password" />       
+        </span>
+            <button pButton type="button" 
+            label="Ingresar" 
+            class="p-button-secondary mt-2"
+            (click)="ingresar()"
+            >
+        </button>
+    </p-card>
+    <button pButton label="Obtener usuario" (click)="obtenerUsuario()" ></button>
+    <button pButton label="Salir" (click)="salir()" ></button>
+
+</p-card>

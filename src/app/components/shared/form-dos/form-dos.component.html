@@ -1,0 +1,45 @@
+<div class="grid">
+    <div class="col-6">
+        <div class="mt-2">
+            <p-button (click)="showDialog()" 
+            icon="pi pi-external-link" label="Ingresar gasto"
+            [style]="{ 'background-color': '#FBC02D' }">
+            </p-button>
+        </div>
+    </div>
+
+</div>
+<p-dialog header="Ingresar gasto" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    
+    <form [formGroup]="miFormulario" >
+        <div class="p-inputgroup">
+            <p-inputNumber placeholder="Ingresar monto"
+                           formControlName="gasto"  ></p-inputNumber>
+            <input class="ml-1" 
+            type="text" 
+            formControlName="rut"
+            placeholder="Ingresar rut" pInputText />  
+        </div>
+        <div class="mt-1">
+            <p-message *ngIf="esValido('gasto')" 
+                        severity="error" text="Debe ingresar un monto superior a 1 peso">
+            </p-message>   
+            <p-message *ngIf="esValido('rut')" 
+                        severity="error" text="Debe ingresar un rut valido">
+            </p-message>
+            </div>   
+        <div class="p-inputgroup mt-2">
+            <textarea  pInputTextarea 
+                formControlName="detalle"
+                placeholder="Agregar Detalle..."></textarea>
+        </div>
+    </form>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="guardar()" label="Guardar" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="display=false" label="Cerrar"></p-button>
+        </ng-template>
+    
+</p-dialog>
+
+

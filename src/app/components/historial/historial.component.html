@@ -1,0 +1,59 @@
+<p-card>
+    
+    <h3>Esgresos</h3>
+    <p-table styleClass="p-datatable-striped" [value]="listaGastos" 
+        responsiveLayout="scroll" [scrollable]="true" scrollHeight="300px" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Fecha</th>
+                <th>RUT</th>
+                <th>Gasto</th>
+                <th>Detalle</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.fecha | date}}</td>
+                <td>{{product.rut}}</td>
+                <td>{{product.gasto | currency:'CLP'}}</td>
+                <td>{{product.detalle}}</td>
+                <td>
+                    <button pButton pRipple type="button" 
+                    icon="pi pi-times" 
+                    class="p-button-rounded p-button-danger p-button-text"
+                    (click)="eliminarIngreso(product.id, 'gastos')">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    <h3>Ingresos</h3>
+    <p-table styleClass="p-datatable-striped" [value]="listaAbonos" 
+        responsiveLayout="scroll" [scrollable]="true" scrollHeight="300px" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Fecha</th>
+                <th>Gasto</th>
+                <th>Detalle</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.fecha | date}}</td>
+                <td>{{product.abono | currency:'CLP'}}</td>
+                <td>-</td>
+                <td>
+                    <button pButton pRipple type="button" 
+                    icon="pi pi-times" 
+                    class="p-button-rounded p-button-danger p-button-text"
+                    (click)="eliminarIngreso(product.id,'ingresos')" >
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+

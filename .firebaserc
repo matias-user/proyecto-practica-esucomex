@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "caja-chica-bc982": {
+      "hosting": {
+        "proyecto-final": [
+          "caja-chica-bc982"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "caja-chica-bc982"
+  }
+}
