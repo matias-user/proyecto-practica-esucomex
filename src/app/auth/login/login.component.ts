@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  loginFallido:boolean = false;
+
   usuario = {
     email: '',
     password: ''
@@ -22,8 +24,12 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.usuario;
     this.authService.login(email, password).then(res => {
       if( res?.user?.email !== undefined){
+
         this.route.navigate(['./app/home'])
         this.authService._pase = true;
+        this.loginFallido = false;
+      }else{
+        this.loginFallido = true;
       }
     })
   }
@@ -31,9 +37,6 @@ export class LoginComponent implements OnInit {
     this.authService.obtenerUsuarioLogeado().subscribe(res => {
       console.log( res?.email)
     });
-  }
-  salir(){
-    this.authService.logout();
   }
 
 }

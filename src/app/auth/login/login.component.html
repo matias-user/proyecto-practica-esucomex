@@ -11,6 +11,9 @@
             <i class="pi pi-lock"></i>
             <input class="" type="password" pPassword placeholder="Contraseña" [(ngModel)]="usuario.password" />       
         </span>
+        <div class="mt-2" *ngIf="loginFallido">
+            <p-message severity="error" text="Usuario o contraseña incorrecta"></p-message>
+        </div>
             <button pButton type="button" 
             label="Ingresar" 
             class="p-button-secondary mt-2"
@@ -19,6 +22,5 @@
         </button>
     </p-card>
     <button pButton label="Obtener usuario" (click)="obtenerUsuario()" ></button>
-    <button pButton label="Salir" (click)="salir()" ></button>
 
 </p-card>
