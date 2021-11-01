@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Gasto } from '../interfaces/Gasto';
 import { Ingreso } from '../interfaces/Ingreso';
 import { FireService } from '../services/fire.service';
 
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
-  styleUrls: ['./historial.component.css']
+  styleUrls: ['./historial.component.css'],
+  styles: [`
+    .gastos{
+      color: #cb3234;
+      font-weight: bold;
+    }
+  `]
 })
 export class HistorialComponent implements OnInit {
 
@@ -27,24 +32,10 @@ export class HistorialComponent implements OnInit {
           ...campo.payload.doc.data()
         })
       });
-      console.log( this.listaIngresos);
     });
-
-    // this.serviciosFire.traerHistorialAbonos().subscribe( data => {
-    //   this.listaAbonos = [];
-    //   data.forEach( (campo: any) => {
-        
-    //     this.listaAbonos.push({
-    //       id: campo.payload.doc.id,
-    //       rut: '-',
-    //       detalle: '-',
-    //       ...campo.payload.doc.data()
-    //     })
-    //   });
-    // })
   }
-  eliminarIngreso(id:string, ingreso:string){
-    this.serviciosFire.eliminarIngreso(id,ingreso).then( () => {
+  eliminarIngreso(id:string){
+    this.serviciosFire.eliminarIngreso(id).then( () => {
       console.log('Se ha eliminado')
     }, error => console.log )
   }

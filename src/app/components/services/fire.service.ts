@@ -21,7 +21,7 @@ export class FireService {
     ingresar.add({abono: ingreso, fecha: Date.now(),tipo: abonoOingr,rut:ruts,detalle:detalles } );
 
   }
-  eliminarIngreso( id:string, ingreso: string ){
-    return this.afs.collection(ingreso).doc(id).delete();
+  eliminarIngreso( id:string ){
+    return this.afs.collection('ingresos').doc(id).delete();
   }
 }
