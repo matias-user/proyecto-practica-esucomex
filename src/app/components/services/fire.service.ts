@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { Gasto } from '../interfaces/Gasto';
 import { Ingreso } from '../interfaces/Ingreso';
 
 
@@ -12,22 +11,15 @@ export class FireService {
 
   constructor( private afs: AngularFirestore ) { }
 
-  traerHistorialGastos():Observable<any>{
-    return this.afs.collection('gastos').snapshotChanges();
-  }
-  traerHistorialAbonos():Observable<any>{
-    return this.afs.collection('abonos').snapshotChanges();
+  traerHistorial():Observable<any>{
+    return this.afs.collection('ingresos').snapshotChanges();
   }
 
-  guardarIngreso ( ingreso: number, abonoOingr: boolean, ruts?:string, detalles?:string){
+  guardarIngreso ( ingreso: number, abonoOingr: string, ruts:string = '-', detalles:string = '-'){
    
-    if( abonoOingr){
-      const ingresar =  this.afs.collection<Ingreso>('abonos');
-      ingresar.add({abono: ingreso, fecha: Date.now() } );
-    }else{
-      const ingresar =  this.afs.collection<Gasto>('gastos');
-      ingresar.add({gasto: ingreso, rut:ruts!, detalle:detalles!, fecha: Date.now() } );
-    }
+    const ingresar =  this.afs.collection<Ingreso>('ingresos');
+    ingresar.add({abono: ingreso, fecha: Date.now(),tipo: abonoOingr,rut:ruts,detalle:detalles } );
+
   }
   eliminarIngreso( id:string, ingreso: string ){
     return this.afs.collection(ingreso).doc(id).delete();

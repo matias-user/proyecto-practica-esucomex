@@ -33,7 +33,7 @@ export class FormDosComponent implements OnInit {
     }
 
     this.fire.guardarIngreso( 
-      this.miFormulario.controls.gasto.value, false,
+      this.miFormulario.controls.gasto.value, 'gasto',
       this.miFormulario.controls.rut.value, this.miFormulario.controls.detalle.value
      )
      this.miFormulario.reset();

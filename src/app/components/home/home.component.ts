@@ -16,32 +16,29 @@ export class HomeComponent implements OnInit {
   constructor( private servicioFire: FireService ) { }
 
   ngOnInit(): void {
-    this.calcularTotales(true);
-    this.calcularTotales(false);
+    this.calcularTotales();
   }
 
-  calcularTotales(bandera:boolean ){
+  calcularTotales( ){
     
-    if(bandera){
-      this.servicioFire.traerHistorialGastos().subscribe( data =>{
-        this.gastos = 0;
-        data.forEach( (campo:any) => {
-          this.gastos += campo.payload.doc.data().gasto;
-        });
-        this.calcularEnCaja(this.gastos, true);
-      })
-    }else{
-      this.servicioFire.traerHistorialAbonos().subscribe( data =>{
-        this.abonos = 0;
-        data.forEach( (campo:any) => {
+    this.servicioFire.traerHistorial().subscribe( data =>{
+      this.abonos = 0;
+      this.gastos = 0;
+
+      data.forEach( (campo:any) => {
+        if( campo.payload.doc.data().tipo == 'abono' ){
           this.abonos += campo.payload.doc.data().abono;
-        });
-        this.calcularEnCaja(this.abonos, false);
-      })
-    }
+          this.calcularEnCaja(campo.payload.doc.data().abono, true);
+        }else{
+          this.gastos += campo.payload.doc.data().abono;
+          this.calcularEnCaja(campo.payload.doc.data().abono, false);
+        } 
+      });
+    })
   }
   calcularEnCaja( monto: number, bandera: boolean){
-    if( bandera) this.enCaja -= monto;
-    else this.enCaja += monto;
+    if( bandera) this.enCaja += monto;
+    else this.enCaja -= monto;
+    return this.enCaja;
   }
 }

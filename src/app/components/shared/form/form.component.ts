@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
       this.miFormulario.markAllAsTouched();
       return;
     }
-    this.afs.guardarIngreso( this.miFormulario.controls.ingreso.value, true )
+    this.afs.guardarIngreso( this.miFormulario.controls.ingreso.value, 'abono' )
     this.miFormulario.reset();
   }
 

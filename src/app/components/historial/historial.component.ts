@@ -10,9 +10,7 @@ import { FireService } from '../services/fire.service';
 })
 export class HistorialComponent implements OnInit {
 
-  listaGastos: Gasto[] = [];
-  listaAbonos: Ingreso[] = [];
-  listaTotales: any[] = [];
+  listaIngresos: Ingreso[] = [];
   cols: any[] = [];
 
   constructor(private serviciosFire: FireService) { }
@@ -27,27 +25,30 @@ export class HistorialComponent implements OnInit {
     ];
   }
   obtenerDatos(){
-    this.serviciosFire.traerHistorialGastos().subscribe( data => {
-      this.listaGastos = [];
+    this.serviciosFire.traerHistorial().subscribe( data => {
+      this.listaIngresos = [];
       data.forEach( (campo: any) => {
         
-        this.listaGastos.push({
+        this.listaIngresos.push({
           id: campo.payload.doc.id,
           ...campo.payload.doc.data()
         })
       });
+      console.log( this.listaIngresos);
     });
 
-    this.serviciosFire.traerHistorialAbonos().subscribe( data => {
-      this.listaAbonos = [];
-      data.forEach( (campo: any) => {
+    // this.serviciosFire.traerHistorialAbonos().subscribe( data => {
+    //   this.listaAbonos = [];
+    //   data.forEach( (campo: any) => {
         
-        this.listaAbonos.push({
-          id: campo.payload.doc.id,
-          ...campo.payload.doc.data()
-        })
-      });
-    })
+    //     this.listaAbonos.push({
+    //       id: campo.payload.doc.id,
+    //       rut: '-',
+    //       detalle: '-',
+    //       ...campo.payload.doc.data()
+    //     })
+    //   });
+    // })
   }
   eliminarIngreso(id:string, ingreso:string){
     this.serviciosFire.eliminarIngreso(id,ingreso).then( () => {
