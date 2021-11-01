@@ -12,6 +12,7 @@ export class HistorialComponent implements OnInit {
 
   listaGastos: Gasto[] = [];
   listaAbonos: Ingreso[] = [];
+  listaTotales: any[] = [];
   cols: any[] = [];
 
   constructor(private serviciosFire: FireService) { }
@@ -35,8 +36,8 @@ export class HistorialComponent implements OnInit {
           ...campo.payload.doc.data()
         })
       });
-      console.log( this.listaGastos )
-    })
+    });
+
     this.serviciosFire.traerHistorialAbonos().subscribe( data => {
       this.listaAbonos = [];
       data.forEach( (campo: any) => {
