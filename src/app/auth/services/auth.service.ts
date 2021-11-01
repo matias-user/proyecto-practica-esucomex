@@ -6,14 +6,21 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
 
+  _pase: boolean = false;
+  get pase(){
+    return this._pase;
+  }
+
   constructor( private afa: AngularFireAuth) { }
 
   async login(email:string, password: string){
 
     try {
-      return await this.afa.signInWithEmailAndPassword( email, password )
+      
+      return await this.afa.signInWithEmailAndPassword( email, password );
+
     } catch (error) {
-      console.log( error );
+      console.log( 'No existe el correo',error );
       return null;
     }
   }

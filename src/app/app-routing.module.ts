@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GuardGuard } from './auth/guards/guard.guard';
 import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path:'app',
-    loadChildren: () => import('./components/componentes.module').then( m => m.ComponentesModule)
+    loadChildren: () => import('./components/componentes.module').then( m => m.ComponentesModule),
+    canLoad: [GuardGuard]
   },
   {
     path:'**',

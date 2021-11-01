@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
+
   constructor( private authService: AuthService, private route: Router ) { }
 
   ngOnInit(): void {
@@ -22,9 +23,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).then(res => {
       if( res?.user?.email !== undefined){
         this.route.navigate(['./app/home'])
+        this.authService._pase = true;
       }
     })
-    return true;
   }
   obtenerUsuario(){
     this.authService.obtenerUsuarioLogeado().subscribe(res => {
