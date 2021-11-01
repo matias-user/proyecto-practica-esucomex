@@ -11,18 +11,11 @@ import { FireService } from '../services/fire.service';
 export class HistorialComponent implements OnInit {
 
   listaIngresos: Ingreso[] = [];
-  cols: any[] = [];
 
   constructor(private serviciosFire: FireService) { }
 
   ngOnInit(): void {
     this.obtenerDatos();  
-
-  this.cols = [
-      { field: 'rut', header: 'RUT' },
-      { field: 'gasto', header: 'Gasto' },
-      { field: 'detalle', header: 'Detalle' }
-    ];
   }
   obtenerDatos(){
     this.serviciosFire.traerHistorial().subscribe( data => {

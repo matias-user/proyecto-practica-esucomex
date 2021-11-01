@@ -1,14 +1,12 @@
-<p-card>
-    
-    <h3>Esgresos</h3>
+<p-card>    
     <p-table styleClass="p-datatable-striped" [value]="listaIngresos" 
         responsiveLayout="scroll" [scrollable]="true" scrollHeight="500px" >
         <ng-template pTemplate="header">
             <tr>
-                <th>Fecha</th>
-                <th>RUT</th>
-                <th>Gasto</th>
-                <th>Detalle</th>
+                <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
+                <th pSortableColumn="rut">Rut <p-sortIcon field="rut"></p-sortIcon></th>
+                <th pSortableColumn="abono">Monto <p-sortIcon field="abono"></p-sortIcon></th>
+                <th pSortableColumn="detalle">Detalle <p-sortIcon field="detalle"></p-sortIcon></th>
                 <th>Ingreso/Gasto</th>
                 <th></th>
             </tr>
@@ -17,7 +15,7 @@
             <tr>
                 <td>{{product.fecha | date}}</td>
                 <td>{{product.rut}}</td>
-                <td>{{product.abono | currency:'CLP'}}</td>
+                <td >{{product.abono | currency:'CLP'}}</td>
                 <td>{{product.detalle}}</td>
                 <td>{{product.tipo}}</td>
                 <td>
