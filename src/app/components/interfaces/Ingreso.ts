@@ -4,4 +4,7 @@ export interface Ingreso{
     detalle?:string;
     rut?:string;
     tipo:string;
+    estado: boolean;
+    nombre?:string;
+    apellido?:string;
   }

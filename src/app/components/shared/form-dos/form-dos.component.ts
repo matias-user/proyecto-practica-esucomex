@@ -18,6 +18,8 @@ export class FormDosComponent implements OnInit {
   miFormulario: FormGroup =  this.frm.group({
     gasto: [ 0, [Validators.required, Validators.min(1)]],
     rut: ['', [Validators.required, Validators.pattern(this.patronRut)]],
+    nombre: ['', Validators.required, Validators.minLength(3) ],
+    apellido: ['', Validators.required, Validators.minLength(3) ],
     detalle: ['']
   })
   constructor(private primengConfig: PrimeNGConfig, 
@@ -34,7 +36,8 @@ export class FormDosComponent implements OnInit {
 
     this.fire.guardarIngreso( 
       this.miFormulario.controls.gasto.value, 'gasto',
-      this.miFormulario.controls.rut.value, this.miFormulario.controls.detalle.value
+      this.miFormulario.controls.rut.value, this.miFormulario.controls.detalle.value,
+      this.miFormulario.controls.nombre.value, this.miFormulario.controls.apellido.value
      )
      this.miFormulario.reset();
   }

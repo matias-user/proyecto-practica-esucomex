@@ -1,1 +1,26 @@
-<p>deudores works!</p>
+<div class="card">
+    <p-table [value]="listaDeudores">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+                <th pSortableColumn="apellido">Apellido <p-sortIcon field="apellido"></p-sortIcon></th>
+                <th pSortableColumn="rut">Rut <p-sortIcon field="rut"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-persona>
+            <tr>
+                <td>{{persona.nombre}}</td>
+                <td>{{persona.apellido}}</td>
+                <td>{{persona.rut}}</td>
+                <td>
+                    <button pButton pRipple type="button" 
+                    icon="pi pi-times" 
+                    class="p-button-rounded p-button-danger p-button-text"
+                    (click)="cambiarEstado(persona.id)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

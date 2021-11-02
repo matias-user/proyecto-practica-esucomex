@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FormComponent } from './shared/form/form.component';
 import { FormDosComponent } from './shared/form-dos/form-dos.component';
+import { FormTresComponent } from './shared/form-tres/form-tres.component';
 
 
 
@@ -23,7 +24,8 @@ import { FormDosComponent } from './shared/form-dos/form-dos.component';
     HomeComponent,
     MenuComponent,
     FormComponent,
-    FormDosComponent
+    FormDosComponent,
+    FormTresComponent
   ],
   imports: [
     CommonModule,

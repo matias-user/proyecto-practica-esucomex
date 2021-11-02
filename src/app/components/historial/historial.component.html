@@ -15,7 +15,7 @@
                 <td>{{product.fecha | date}}</td>
                 <td>{{product.rut}}</td>
                 <td >
-                    <div [ngClass]="{'gastos': product.tipo == 'gasto' }" >
+                    <div [ngClass]="{'gastos': product.tipo == 'gasto','abonos':product.tipo == 'abono' }" >
                         {{product.abono | currency:'CLP'}}
                     </div>
                 </td>

@@ -8,8 +8,15 @@
         </div>
     </div>
 
+    <div class="col-6">
+        <div class="mt-2">
+            <app-form-tres></app-form-tres>
+        </div>
+    </div>
 </div>
-<p-dialog header="Ingresar gasto" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+<p-dialog header="Ingresar gasto" [(visible)]="display" 
+[modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     [draggable]="false" [resizable]="false">
     
     <form [formGroup]="miFormulario" >
@@ -19,16 +26,32 @@
             <input class="ml-1" 
             type="text" 
             formControlName="rut"
-            placeholder="Ingresar rut" pInputText />  
+            placeholder="Rut..." pInputText />  
         </div>
         <div class="mt-1">
             <p-message *ngIf="esValido('gasto')" 
                         severity="error" text="Debe ingresar un monto superior a 1 peso">
-            </p-message>   
-            <p-message *ngIf="esValido('rut')" 
-                        severity="error" text="Debe ingresar un rut valido">
             </p-message>
-            </div>   
+            <div class="mt-1">   
+                <p-message class="mt-1" *ngIf="esValido('rut')" 
+                            severity="error" text="Debe ingresar un rut valido">
+                </p-message>
+            </div>
+        </div>
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Nombre..." formControlName="nombre" />
+            <input class="ml-1" type="text" pInputText placeholder="Apellido..." formControlName="apellido" />  
+        </div> 
+        <div class="mt-1">
+            <p-message *ngIf="esValido('nombre')" 
+                        severity="error" text="Debe ingresar un nombre">
+            </p-message>
+            <div class="mt-1">
+                <p-message *ngIf="esValido('apellido')" 
+                            severity="error" text="Debe ingresarun apellido">
+                </p-message>
+            </div>
+        </div>  
         <div class="p-inputgroup mt-2">
             <textarea  pInputTextarea 
                 formControlName="detalle"

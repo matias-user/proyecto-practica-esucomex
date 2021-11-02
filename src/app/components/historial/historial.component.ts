@@ -5,13 +5,7 @@ import { FireService } from '../services/fire.service';
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
-  styleUrls: ['./historial.component.css'],
-  styles: [`
-    .gastos{
-      color: #cb3234;
-      font-weight: bold;
-    }
-  `]
+  styleUrls: ['./historial.component.css']
 })
 export class HistorialComponent implements OnInit {
 
