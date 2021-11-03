@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService} from 'primeng/api';
 import { Ingreso } from '../interfaces/Ingreso';
 import { FireService } from '../services/fire.service';
 
@@ -12,13 +13,14 @@ export class DeudoresComponent implements OnInit {
   listaDeudores: Ingreso[] = [];
   idActualizar:string = '';
 
-  constructor(private fireServ: FireService) { }
+  constructor(private fireServ: FireService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.obtenerDeudores();
   }
   obtenerDeudores(){
-    this.fireServ.traerHistorial().subscribe( data => {
+    this.fireServ.traerFuncionarios().subscribe( data => {
       data.forEach( (campo:any) => {
         
         this.listaDeudores.push({
@@ -29,7 +31,23 @@ export class DeudoresComponent implements OnInit {
       console.log(this.listaDeudores)
     } )
   }
-  cambiarEstado(id:string){
-    this.fireServ.editarIngreso(id).update({estado: false}) ;
+  eliminarFuncionario(id:string){
+    this.fireServ.eliminarFuncionario(id);
   }
+
+  confirm(event: Event, id:string) {
+    this.confirmationService.confirm({
+        target: event.target!,
+        message: '¿Estas seguro que deseas eliminar un funcionario?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.eliminarFuncionario(id);
+        },
+        reject: () => {
+        }
+    });
+  }
+    // cambiarEstado(id:string){
+  //   this.fireServ.editarIngreso(id).update({estado: false}) ;
+  // }
 }

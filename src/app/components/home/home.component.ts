@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
     this.servicioFire.traerHistorial().subscribe( data =>{
       this.abonos = 0;
       this.gastos = 0;
-
+      this.enCaja = 0;
+      
       data.forEach( (campo:any) => {
         if( campo.payload.doc.data().tipo == 'abono' ){
           this.abonos += campo.payload.doc.data().abono;
@@ -39,6 +40,5 @@ export class HomeComponent implements OnInit {
   calcularEnCaja( monto: number, bandera: boolean){
     if( bandera) this.enCaja += monto;
     else this.enCaja -= monto;
-    return this.enCaja;
   }
 }

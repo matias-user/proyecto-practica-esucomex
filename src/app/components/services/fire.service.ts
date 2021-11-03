@@ -31,9 +31,12 @@ export class FireService {
   }
   guardarFuncionario(funcionario: any){
     const ingreso = this.afs.collection<Funcionario>('funcionarios');
-    ingreso.add( { ...funcionario } )
+    ingreso.add( funcionario  )
   }
   eliminarIngreso( id:string ){
     return this.afs.collection('ingresos').doc(id).delete();
+  }
+  eliminarFuncionario( id:string ){
+    return this.afs.collection('funcionarios').doc(id).delete();
   }
 }

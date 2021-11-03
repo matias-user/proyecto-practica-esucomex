@@ -14,8 +14,6 @@ import { FormComponent } from './shared/form/form.component';
 import { FormDosComponent } from './shared/form-dos/form-dos.component';
 import { FormTresComponent } from './shared/form-tres/form-tres.component';
 
-
-
 @NgModule({
   declarations: [
     HistorialComponent,
@@ -25,17 +23,19 @@ import { FormTresComponent } from './shared/form-tres/form-tres.component';
     MenuComponent,
     FormComponent,
     FormDosComponent,
-    FormTresComponent
+    FormTresComponent,
+    
   ],
   imports: [
     CommonModule,
     PrimeNgModule,
     FormsModule,
     ComponentsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   exports:[
-    InicioComponent
+    InicioComponent,
   ]
 })
 export class ComponentesModule { }

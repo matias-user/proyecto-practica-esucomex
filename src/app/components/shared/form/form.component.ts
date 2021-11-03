@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { FireService } from '../../services/fire.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class FormComponent implements OnInit {
     ingreso: [ 0, [ Validators.required, Validators.min(1)]],
   })
 
-  constructor(private formBuilder: FormBuilder, private afs: FireService) { }
+  constructor(private formBuilder: FormBuilder, 
+    private afs: FireService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -27,8 +30,10 @@ export class FormComponent implements OnInit {
       this.miFormulario.markAllAsTouched();
       return;
     }
+
     this.afs.guardarIngreso( this.miFormulario.controls.ingreso.value, 'abono' )
     this.miFormulario.reset();
+    this.messageService.add({severity:'success', summary:'Abono ingresado', detail:'Se ha ingresado correctamente'});
   }
 
 }

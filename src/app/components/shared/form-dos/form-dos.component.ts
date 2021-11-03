@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { FireService } from '../../services/fire.service';
 
 @Component({
@@ -18,13 +18,14 @@ export class FormDosComponent implements OnInit {
   miFormulario: FormGroup =  this.frm.group({
     gasto: [ 0, [Validators.required, Validators.min(1)]],
     rut: ['', [Validators.required, Validators.pattern(this.patronRut)]],
-    nombre: ['', Validators.required, Validators.minLength(3) ],
-    apellido: ['', Validators.required, Validators.minLength(3) ],
+    nombre: ['', [Validators.required, Validators.minLength(3)] ],
+    apellido: ['', [Validators.required, Validators.minLength(3)] ],
     detalle: ['']
   })
-  constructor(private primengConfig: PrimeNGConfig, 
+  constructor( 
     private frm: FormBuilder,
-    private fire: FireService) { }
+    private fire: FireService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -40,6 +41,7 @@ export class FormDosComponent implements OnInit {
       this.miFormulario.controls.nombre.value, this.miFormulario.controls.apellido.value
      )
      this.miFormulario.reset();
+     this.messageService.add({severity:'success', summary:'Esgreso!', detail:'Se ha ingresado correctamente'});
   }
   esValido(campo: string){
     return this.miFormulario.controls[campo].errors

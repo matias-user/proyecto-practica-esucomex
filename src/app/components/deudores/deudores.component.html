@@ -10,17 +10,19 @@
         </ng-template>
         <ng-template pTemplate="body" let-persona>
             <tr>
-                <td>{{persona.nombre}}</td>
-                <td>{{persona.apellido}}</td>
+                <td>{{persona.nombre |titlecase}}</td>
+                <td>{{persona.apellido|titlecase}}</td>
                 <td>{{persona.rut}}</td>
                 <td>
                     <button pButton pRipple type="button" 
                     icon="pi pi-times" 
                     class="p-button-rounded p-button-danger p-button-text"
-                    (click)="cambiarEstado(persona.id)">
+                    (click)="confirm($event, persona.id)"
+                    >
                     </button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
+    <p-confirmPopup></p-confirmPopup>
 </div>

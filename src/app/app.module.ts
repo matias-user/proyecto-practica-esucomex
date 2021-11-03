@@ -30,7 +30,7 @@ registerLocaleData( localEs );//Funcion para implementes el es-CL
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ComponentsRoutingModule,
-    ComponentesModule
+    ComponentesModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-CL'}],
   bootstrap: [AppComponent]
