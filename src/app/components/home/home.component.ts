@@ -28,11 +28,11 @@ export class HomeComponent implements OnInit {
       
       data.forEach( (campo:any) => {
         if( campo.payload.doc.data().tipo == 'abono' ){
-          this.abonos += campo.payload.doc.data().abono;
-          this.calcularEnCaja(campo.payload.doc.data().abono, true);
+          this.abonos += campo.payload.doc.data().ingreso;
+          this.calcularEnCaja(campo.payload.doc.data().ingreso, true);
         }else{
-          this.gastos += campo.payload.doc.data().abono;
-          this.calcularEnCaja(campo.payload.doc.data().abono, false);
+          this.gastos += campo.payload.doc.data().ingreso;
+          this.calcularEnCaja(campo.payload.doc.data().ingreso, false);
         } 
       });
     })

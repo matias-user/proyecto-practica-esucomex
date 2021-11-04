@@ -20,7 +20,8 @@ export class DeudoresComponent implements OnInit {
     this.obtenerDeudores();
   }
   obtenerDeudores(){
-    this.fireServ.traerFuncionarios().subscribe( data => {
+    this.fireServ.traerHistorial().subscribe( data => {
+      this.listaDeudores = []
       data.forEach( (campo:any) => {
         
         this.listaDeudores.push({
@@ -41,13 +42,13 @@ export class DeudoresComponent implements OnInit {
         message: '¿Estas seguro que deseas eliminar un funcionario?',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-          this.eliminarFuncionario(id);
+          this.cambiarEstado(id);
         },
         reject: () => {
         }
     });
   }
-    // cambiarEstado(id:string){
-  //   this.fireServ.editarIngreso(id).update({estado: false}) ;
-  // }
+    cambiarEstado(id:string){
+    this.fireServ.editarIngreso(id).update({estado: false}) ;
+  }
 }

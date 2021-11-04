@@ -13,6 +13,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FormComponent } from './shared/form/form.component';
 import { FormDosComponent } from './shared/form-dos/form-dos.component';
 import { FormTresComponent } from './shared/form-tres/form-tres.component';
+import { ActivosPipe } from './pipes/activos.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormTresComponent } from './shared/form-tres/form-tres.component';
     FormComponent,
     FormDosComponent,
     FormTresComponent,
+    ActivosPipe,
     
   ],
   imports: [

@@ -1,10 +1,10 @@
 export interface Ingreso{
-    abono:number;
-    fecha: number;
+    ingreso:number;
+    fecha?: number;
     detalle?:string;
-    rut?:string;
+    rut:string;
     tipo:string;
-    estado: boolean;
-    nombre?:string;
-    apellido?:string;
+    nombre:string;
+    apellido:string;
+    estado:boolean;
   }

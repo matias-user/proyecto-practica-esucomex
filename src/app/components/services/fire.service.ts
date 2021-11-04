@@ -26,12 +26,12 @@ export class FireService {
     
       const ingresar =  this.afs.collection<Ingreso>('ingresos');
     ingresar.add(
-      {abono: ingreso, fecha: Date.now(), tipo: abonoOingr, nombre, 
+      {ingreso: ingreso, fecha: Date.now(), tipo: abonoOingr, nombre, 
       rut, detalle, apellido, estado: true} );
   }
   guardarFuncionario(funcionario: any){
     const ingreso = this.afs.collection<Funcionario>('funcionarios');
-    ingreso.add( funcionario  )
+    ingreso.add({ ...funcionario, fecha: Date.now() } )
   }
   eliminarIngreso( id:string ){
     return this.afs.collection('ingresos').doc(id).delete();
