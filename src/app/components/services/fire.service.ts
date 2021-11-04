@@ -15,28 +15,18 @@ export class FireService {
   traerHistorial():Observable<any>{
     return this.afs.collection('ingresos').snapshotChanges();
   }
-  traerFuncionarios():Observable<any>{
-    return this.afs.collection('funcionarios').snapshotChanges();
-  }
   editarIngreso(id:string){
     return this.afs.collection('ingresos').doc(id);
   }
   guardarIngreso ( ingreso: number, abonoOingr: 
-    string, rut:string = '-', detalle:string = '-', nombre = '', apellido = ''){
+    string, rut:string = '-', detalle:string = 'abono', nombre = '', apellido = ''){
     
       const ingresar =  this.afs.collection<Ingreso>('ingresos');
     ingresar.add(
       {ingreso: ingreso, fecha: Date.now(), tipo: abonoOingr, nombre, 
       rut, detalle, apellido, estado: true} );
   }
-  guardarFuncionario(funcionario: any){
-    const ingreso = this.afs.collection<Funcionario>('funcionarios');
-    ingreso.add({ ...funcionario, fecha: Date.now() } )
-  }
   eliminarIngreso( id:string ){
     return this.afs.collection('ingresos').doc(id).delete();
-  }
-  eliminarFuncionario( id:string ){
-    return this.afs.collection('funcionarios').doc(id).delete();
   }
 }

@@ -13,7 +13,7 @@ export class ActivosPipe implements PipeTransform {
     this.nuevoArray = [];
     
     array.forEach( ingreso => {
-      if( ingreso.estado ) this.nuevoArray.push(ingreso)
+      if( ingreso.estado && ingreso.nombre != '' ) this.nuevoArray.push(ingreso)
     })
 
     return this.nuevoArray;

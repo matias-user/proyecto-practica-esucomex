@@ -32,9 +32,6 @@ export class DeudoresComponent implements OnInit {
       console.log(this.listaDeudores)
     } )
   }
-  eliminarFuncionario(id:string){
-    this.fireServ.eliminarFuncionario(id);
-  }
 
   confirm(event: Event, id:string) {
     this.confirmationService.confirm({

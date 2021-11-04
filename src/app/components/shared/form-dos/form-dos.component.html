@@ -1,5 +1,6 @@
 <div class="grid">
-    <div class="col-6">
+    <div class="col-4"></div>
+    <div class="col-4">
         <div class="mt-2">
             <p-button (click)="showDialog()" 
             icon="pi pi-external-link" label="Ingresar gasto"
@@ -7,12 +8,8 @@
             </p-button>
         </div>
     </div>
+    <div class="col-4"></div>
 
-    <div class="col-6">
-        <div class="mt-2">
-            <app-form-tres></app-form-tres>
-        </div>
-    </div>
 </div>
 <p-dialog header="Ingresar gasto" [(visible)]="display" 
 [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
@@ -59,7 +56,10 @@
         </div>
     </form>
         <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="guardar()" label="Guardar" class="p-button-text"></p-button>
+            <p-button icon="pi pi-check" 
+            (click)="guardar()"
+            label="Guardar" class="p-button-text">
+        </p-button>
             <p-button icon="pi pi-times" (click)="display=false" label="Cerrar"></p-button>
         </ng-template>
     

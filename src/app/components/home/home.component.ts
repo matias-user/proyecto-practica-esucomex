@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   abonos:number = 0;
   enCaja:number = 0;
   fecha:number = Date.now();
-  value: number = 65;
+  valorGrafica: number = 0;
   constructor( private servicioFire: FireService ) { }
 
   ngOnInit(): void {
@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
       this.abonos = 0;
       this.gastos = 0;
       this.enCaja = 0;
-      
+      this.valorGrafica = 0;
+
       data.forEach( (campo:any) => {
         if( campo.payload.doc.data().tipo == 'abono' ){
           this.abonos += campo.payload.doc.data().ingreso;
@@ -34,11 +35,12 @@ export class HomeComponent implements OnInit {
           this.gastos += campo.payload.doc.data().ingreso;
           this.calcularEnCaja(campo.payload.doc.data().ingreso, false);
         } 
+        this.valorGrafica = this.gastos * 100 / this.abonos;        
       });
     })
   }
   calcularEnCaja( monto: number, bandera: boolean){
-    if( bandera) this.enCaja += monto;
+    if( bandera)this.enCaja += monto; 
     else this.enCaja -= monto;
   }
 }

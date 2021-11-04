@@ -1,8 +1,8 @@
 <p-card>    
-    <p-table styleClass="p-datatable-striped" [value]="listaIngresos" 
+    <p-table  styleClass="p-datatable-striped " [value]="listaIngresos" 
         responsiveLayout="scroll" [scrollable]="true" scrollHeight="500px" >
-        <ng-template pTemplate="header">
-            <tr>
+        <ng-template  pTemplate="header">
+            <tr >
                 <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
                 <th pSortableColumn="rut">Rut <p-sortIcon field="rut"></p-sortIcon></th>
                 <th pSortableColumn="abono">Monto <p-sortIcon field="abono"></p-sortIcon></th>
@@ -16,7 +16,7 @@
                 <td>{{product.rut}}</td>
                 <td >
                     <div [ngClass]="{'gastos': product.tipo == 'gasto','abonos':product.tipo == 'abono' }" >
-                        {{product.abono | currency:'CLP'}}
+                        {{product.ingreso | currency:'CLP'}}
                     </div>
                 </td>
                 <td>{{product.detalle}}</td>

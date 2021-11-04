@@ -42,6 +42,7 @@ export class FormDosComponent implements OnInit {
      )
      this.miFormulario.reset();
      this.messageService.add({severity:'success', summary:'Esgreso!', detail:'Se ha ingresado correctamente'});
+     this.display = false;
   }
   esValido(campo: string){
     return this.miFormulario.controls[campo].errors
