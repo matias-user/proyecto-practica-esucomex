@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path:'app',
     loadChildren: () => import('./components/componentes.module').then( m => m.ComponentesModule),
-    canActivate: [GuardGuard],
+    canActivate: [ GuardGuard ]
     // canLoad: [GuardGuard]
   },
   {

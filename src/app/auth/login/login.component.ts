@@ -26,17 +26,18 @@ export class LoginComponent implements OnInit {
       if( res?.user?.email !== undefined){
 
         this.route.navigate(['./app/home'])
-        this.authService._pase = true;
         this.loginFallido = false;
       }else{
         this.loginFallido = true;
+        setTimeout(() => {
+          this.loginFallido = false;
+        }, 5000);
+        
       }
     })
   }
   obtenerUsuario(){
-    this.authService.obtenerUsuarioLogeado().subscribe(res => {
-      console.log( res?.email)
-    });
+    this.authService.obtenerUsuarioLogeado().subscribe()
   }
 
 }

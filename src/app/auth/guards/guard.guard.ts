@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot,UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { take, switchMap } from "rxjs/internal/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuardGuard implements  CanLoad, CanActivate {
+export class GuardGuard implements  CanActivate {
 
-  valor: boolean = false;
 
-  constructor( private authServ: AuthService ){}
+  constructor( private auth: AngularFireAuth ){}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean > | Promise<boolean> | boolean  {
-    return true;
+    state: RouterStateSnapshot): Observable<boolean > | boolean  {
+   
+      return this.auth.authState.pipe( 
+        take(1),
+        switchMap( async ( authstate ) => {
+          if( authstate ){
+            return true;
+          }else{
+            console.log('no autenticado');
+            return false;
+          }
+        } )
+       )
   }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean>  | boolean   {
-
-      this.valor = this.authServ.pase;
-
-      return this.valor;
-    }
 }

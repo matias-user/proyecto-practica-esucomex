@@ -6,10 +6,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
 
-  _pase: boolean = false;
-  get pase(){
-    return this._pase;
-  }
 
   constructor( private afa: AngularFireAuth) { }
 
@@ -17,7 +13,8 @@ export class AuthService {
 
     try {
       
-      return await this.afa.signInWithEmailAndPassword( email, password );
+      return await this.afa.signInWithEmailAndPassword( email, password )
+        .catch( console.log ) ;
 
     } catch (error) {
       console.log( 'No existe el correo',error );
