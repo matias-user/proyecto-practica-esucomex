@@ -12,11 +12,12 @@ export class LoginComponent implements OnInit {
   loginFallido:boolean = false;
 
   usuario = {
-    email: '',
-    password: ''
+    email: 'test1@test.cl',
+    password: '123456'
   }
 
   constructor( private authService: AuthService, private route: Router ) { }
+
 
   ngOnInit(): void {
   }

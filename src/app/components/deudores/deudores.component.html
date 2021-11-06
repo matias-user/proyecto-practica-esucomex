@@ -10,12 +10,12 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-persona>
-            <tr>
+            <tr  >
                 <td>{{persona.nombre |titlecase}}</td>
                 <td>{{persona.apellido|titlecase}}</td>
                 <td>{{persona.rut}}</td>
                 <td>{{persona.fecha | date}}</td>
-                <td>
+                <td *ngIf="usuarioAdmin" >
                     <button pButton pRipple type="button" 
                     icon="pi pi-times" 
                     class="p-button-rounded p-button-danger p-button-text"

@@ -7,4 +7,5 @@ export interface Ingreso{
     nombre:string;
     apellido:string;
     estado:boolean;
+    userId?:string; 
   }

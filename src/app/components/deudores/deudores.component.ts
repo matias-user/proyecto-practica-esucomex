@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService} from 'primeng/api';
 import { Ingreso } from '../interfaces/Ingreso';
+import { Usuario } from '../interfaces/usuario.interface';
 import { FireService } from '../services/fire.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-deudores',
@@ -11,14 +14,17 @@ import { FireService } from '../services/fire.service';
 export class DeudoresComponent implements OnInit {
 
   listaDeudores: Ingreso[] = [];
-  idActualizar:string = '';
-
+  usuarioAdmin: boolean= false;
+  
   constructor(private fireServ: FireService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.obtenerDeudores();
+    this.verUsuarioAdmin();
   }
+
   obtenerDeudores(){
     this.fireServ.traerHistorial().subscribe( data => {
       this.listaDeudores = []
@@ -47,5 +53,14 @@ export class DeudoresComponent implements OnInit {
   }
     cambiarEstado(id:string){
     this.fireServ.editarIngreso(id).update({estado: false}) ;
+  }
+  verUsuarioAdmin(){
+    this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
+      if( usuario?.email?.toString() == 'admin@test.cl' ){
+        this.usuarioAdmin = true;
+      }
+      console.log( usuario?.email )
+
+    } )
   }
 }

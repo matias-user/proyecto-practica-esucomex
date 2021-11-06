@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ingreso } from '../interfaces/Ingreso';
 import { FireService } from '../services/fire.service';
 import {ConfirmationService,} from "primeng/api";
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -13,12 +14,15 @@ import {ConfirmationService,} from "primeng/api";
 export class HistorialComponent implements OnInit {
 
   listaIngresos: Ingreso[] = [];
+  usuarioAdmin: boolean= false;
 
   constructor(private serviciosFire: FireService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private authServ: AuthService) { }
 
   ngOnInit(): void {
-    this.obtenerDatos();  
+    this.obtenerDatos();
+    this.verUsuarioAdmin();
   }
   obtenerDatos(){
     this.serviciosFire.traerHistorial().subscribe( data => {
@@ -49,5 +53,14 @@ export class HistorialComponent implements OnInit {
             //reject action
         }
     });
+  }
+verUsuarioAdmin(){
+  this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
+    if( usuario?.email?.toString() == 'admin@test.cl' ){
+      this.usuarioAdmin = true;
+    }
+    console.log( usuario?.email )
+
+  } )
 }
 }
