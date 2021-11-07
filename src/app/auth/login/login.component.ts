@@ -37,8 +37,5 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-  obtenerUsuario(){
-    this.authService.obtenerUsuarioLogeado().subscribe()
-  }
 
 }

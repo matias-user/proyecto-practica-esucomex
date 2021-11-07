@@ -1,20 +1,25 @@
-<div class="card">
-    <p-table [value]="listaDeudores |activos">
+<p-card>
+    <ng-template pTemplate="subtitle">
+        Deudores
+    </ng-template>
+    
+    <p-table [value]="listaDeudores |activos " responsiveLayout="scroll" styleClass="p-datatable-striped p-datatable-sm"  [scrollable]="true" scrollHeight="600px">
         <ng-template pTemplate="header">
             <tr>
+                <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
                 <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
                 <th pSortableColumn="apellido">Apellido <p-sortIcon field="apellido"></p-sortIcon></th>
                 <th pSortableColumn="rut">Rut <p-sortIcon field="rut"></p-sortIcon></th>
-                <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
-                <th></th>
+                <th *ngIf="usuarioAdmin">Acción</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-persona>
             <tr  >
+                <td>{{persona.fecha | date}}</td>
                 <td>{{persona.nombre |titlecase}}</td>
                 <td>{{persona.apellido|titlecase}}</td>
                 <td>{{persona.rut}}</td>
-                <td>{{persona.fecha | date}}</td>
+                
                 <td *ngIf="usuarioAdmin" >
                     <button pButton pRipple type="button" 
                     icon="pi pi-times" 
@@ -27,4 +32,4 @@
         </ng-template>
     </p-table>
     <p-confirmPopup></p-confirmPopup>
-</div>
+</p-card>

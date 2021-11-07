@@ -32,23 +32,21 @@
         </p-card> 
     </div>
 </div>
-<p-card  >
-    <div class="flex card-container flex-wrap justify-content-around ">
-        <div class="flex align-items-center">
-                <h2 >En Caja:</h2> 
-                <i class="pi pi-dollar" ></i> 
-                <strong class="text-2xl" 
-                    [ngClass]="{ 'text-green-600': valorGrafica > 30, 'text-pink-600': enCaja < 30 }" > 
-                    {{enCaja | number}}
-                </strong> 
-        </div>
-        <div class="tags">
-            <p-knob [(ngModel)]="valorGrafica" valueTemplate="{value}%" valueColor="var(--primary-color)"
-            rangeColor="#FBC02D" class="inline"> 
-            </p-knob>
-            
-            <p-tag value="Gastos" ></p-tag>
-            <p-tag value="Abonos" severity="warning" styleClass="ml-2" ></p-tag>
-        </div>
+<div class="flex  flex-wrap justify-content-around ">
+    <div class="flex align-items-center">
+            <h2 >En Caja:</h2> 
+            <i class="pi pi-dollar" ></i> 
+            <strong class="text-2xl" 
+                [ngClass]="{ 'text-green-600': valorGrafica > 30, 'text-pink-600': enCaja < 30 }" > 
+                {{enCaja | number}}
+            </strong> 
     </div>
-</p-card> 
+    <div class="tags mb-2">
+        <p-knob  [size]="120" [(ngModel)]="valorGrafica" valueTemplate="" valueColor="var(--primary-color)"
+        rangeColor="#FBC02D" class="inline" > 
+        </p-knob>
+        
+        <p-tag value="Gastos" ></p-tag>
+        <p-tag value="Abonos" severity="warning" styleClass="ml-2" ></p-tag>
+    </div>
+</div>

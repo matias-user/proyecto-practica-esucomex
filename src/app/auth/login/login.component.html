@@ -1,26 +1,24 @@
-<p-card>
-    <p-card header="Login" 
-        class="flex flex-row justify-content-center card-container" >
-        
-        <span class="p-input-icon-left">
-            <i class="pi pi-user"></i>
-            <input type="text" pInputText placeholder="Correo" [(ngModel)]="usuario.email">         
-        </span>
+<div class="flex justify-content-center mt-8 ">
+        <p-card header="Login " 
+            class="flex justify-content-center " >
+            
+            <span class="p-input-icon-left ">
+                <i class="pi pi-user"></i>
+                <input type="text" pInputText placeholder="Correo" [(ngModel)]="usuario.email">         
+            </span>
 
-        <span class="p-input-icon-left block mt-2">
-            <i class="pi pi-lock"></i>
-            <input class="" type="password" pPassword placeholder="Contraseña" [(ngModel)]="usuario.password" />       
-        </span>
-        <div class="mt-2" *ngIf="loginFallido">
-            <p-message severity="error" text="Usuario o contraseña incorrecta"></p-message>
-        </div>
-            <button pButton type="button" 
-            label="Ingresar" 
-            class="p-button-secondary mt-2"
-            (click)="ingresar()"
-            >
-        </button>
+            <span class="p-input-icon-left block mt-2">
+                <i class="pi pi-lock"></i>
+                <input class="" type="password" pPassword placeholder="Contraseña" [(ngModel)]="usuario.password" />       
+            </span>
+            <div class="mt-2" *ngIf="loginFallido">
+                <p-message severity="error" text="Usuario o contraseña incorrecta"></p-message>
+            </div>
+                <button pButton type="button" 
+                label="Ingresar" 
+                class="p-button-secondary mt-2"
+                (click)="ingresar()"
+                >
+            </button>
     </p-card>
-    <button pButton label="Obtener usuario" (click)="obtenerUsuario()" ></button>
-
-</p-card>
+</div>
