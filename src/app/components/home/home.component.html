@@ -1,14 +1,13 @@
 <p-card >
     <ng-template pTemplate="header">
-        <h1 class="title" >Inicio</h1>
-        <hr>
+        <h1 class="text-gray-600 ml-2" >Inicio</h1>
     </ng-template>
 
-    <app-form></app-form>
+<app-form></app-form>
     
 <div class="grid pt-0 mt-2">
     <div class="col-6 sm:col-4">
-        <p-card header="Fecha" >
+        <p-card header="Fecha" styleClass="text-gray-600" >
             <ng-template pTemplate="subtitle" >
                 <p class="font-bold">{{fecha | date:'dd-MMMM-yyyy'}}</p>
             </ng-template>
@@ -16,7 +15,7 @@
         </p-card>  
     </div>
     <div class="col-6 sm:col-4">
-        <p-card class="text-green-600" header="Abonos" id="abonos" >
+        <p-card styleClass="text-gray-600" class="text-green-600" header="Abonos" id="abonos" >
             <ng-template pTemplate="subtitle" >
                 <p class="text-green-600 font-bold" >{{ abonos | currency:'CLP'}}</p>
             </ng-template>
@@ -24,7 +23,7 @@
         </p-card>
     </div>
     <div class="col-6 sm:col-4">
-        <p-card header="Gastos" #gasto >
+        <p-card styleClass="text-gray-600" header="Gastos" #gasto >
             <ng-template pTemplate="subtitle" >
                 <p class="text-pink-600 font-bold" >{{ gastos | currency:'CLP'}}</p>
             </ng-template>
@@ -34,7 +33,7 @@
 </div>
 <div class="flex  flex-wrap justify-content-around ">
     <div class="flex align-items-center">
-            <h2 >En Caja:</h2> 
+            <h2 class="text-gray-600" >En Caja:</h2> 
             <i class="pi pi-dollar" ></i> 
             <strong class="text-2xl" 
                 [ngClass]="{ 'text-green-600': valorGrafica > 30, 'text-pink-600': enCaja < 30 }" > 

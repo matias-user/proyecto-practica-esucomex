@@ -35,7 +35,6 @@ export class DeudoresComponent implements OnInit {
           ...campo.payload.doc.data()
         })
       });
-      console.log(this.listaDeudores)
     } )
   }
 
@@ -58,9 +57,9 @@ export class DeudoresComponent implements OnInit {
     this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
       if( usuario?.email?.toString() == 'admin@test.cl' ){
         this.usuarioAdmin = true;
+      }else{
+        return;
       }
-      console.log( usuario?.email )
-
     } )
   }
 }

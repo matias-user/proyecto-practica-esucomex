@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { Ingreso } from '../interfaces/Ingreso';
 import { FireService } from '../services/fire.service';
-import {ConfirmationService,} from "primeng/api";
+import {ConfirmationService, MessageService,} from "primeng/api";
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,10 +16,18 @@ export class HistorialComponent implements OnInit {
 
   listaIngresos: Ingreso[] = [];
   usuarioAdmin: boolean= false;
+  display: boolean = false;
+  id:string = '';
 
   constructor(private serviciosFire: FireService,
     private confirmationService: ConfirmationService,
-    private authServ: AuthService) { }
+    private authServ: AuthService,
+    private fb: FormBuilder,
+    private messageService: MessageService) { }
+
+    miFormulario: FormGroup = this.fb.group({
+      ingreso: [ , [Validators.required, Validators.min(1)] ]
+    })
 
   ngOnInit(): void {
     this.obtenerDatos();
@@ -54,13 +63,22 @@ export class HistorialComponent implements OnInit {
         }
     });
   }
-verUsuarioAdmin(){
-  this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
-    if( usuario?.email?.toString() == 'admin@test.cl' ){
-      this.usuarioAdmin = true;
-    }
-    console.log( usuario?.email )
+  verUsuarioAdmin(){
+    this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
+      if( usuario?.email?.toString() == 'admin@test.cl' ){
+        this.usuarioAdmin = true;
+      }
+      console.log( usuario?.email )
 
-  } )
-}
+    } )
+  }
+  editarIngreso(){
+    this.serviciosFire.editarIngreso(this.id).update(this.miFormulario.value);
+    this.messageService.add({severity:'success', summary:'Modificacion', detail:'Se ha modificado correctamente'})
+    this.display = false;
+  }
+  showDialog(id: string) {
+    this.display = true;
+    this.id = id;
+  }
 }
