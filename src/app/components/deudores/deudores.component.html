@@ -10,7 +10,7 @@
                 <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
                 <th pSortableColumn="apellido">Apellido <p-sortIcon field="apellido"></p-sortIcon></th>
                 <th pSortableColumn="rut">Rut <p-sortIcon field="rut"></p-sortIcon></th>
-                <th *ngIf="usuarioAdmin">Acción</th>
+                <th >Acción</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-persona>
@@ -20,12 +20,16 @@
                 <td>{{persona.apellido|titlecase}}</td>
                 <td>{{persona.rut}}</td>
                 
-                <td *ngIf="usuarioAdmin" >
+                <td  >
+                    <button *ngIf="usuarioAdmin" pButton pRipple type="button" 
+                        icon="pi pi-times" 
+                        class="p-button-rounded p-button-danger p-button-text"
+                        (click)="confirm($event, persona.id)">
+                    </button>
                     <button pButton pRipple type="button" 
-                    icon="pi pi-times" 
-                    class="p-button-rounded p-button-danger p-button-text"
-                    (click)="confirm($event, persona.id)"
-                    >
+                        icon="pi pi-file-pdf" 
+                        class="p-button-rounded p-button-success p-button-text"
+                        (click)="generarPdf(persona.nombre, persona.apellido, persona.ingreso)">
                     </button>
                 </td>
             </tr>

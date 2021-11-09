@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService} from 'primeng/api';
 import { Ingreso } from '../interfaces/Ingreso';
-import { Usuario } from '../interfaces/usuario.interface';
 import { FireService } from '../services/fire.service';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import jspdf from "jspdf";
 
 @Component({
   selector: 'app-deudores',
@@ -61,5 +60,28 @@ export class DeudoresComponent implements OnInit {
         return;
       }
     } )
+  }
+  generarPdf(nombre: string, apellido:string, monto:string){
+    const nombreCompleto = `${nombre} ${apellido}`
+
+    const doc = new jspdf();
+
+    doc.setFontSize(22);
+    doc.setFont("helvetica", "bold");
+    doc.text('Comprobante de rendicion', 10, 10);
+    doc.setFontSize(22);
+    doc.text(`$ ${monto}`, 160, 10);
+
+    doc.setFontSize(16);
+    doc.text( nombreCompleto, 10, 60 )
+    doc.line(10, 65, 65, 65);
+    doc.setFontSize(14);
+    doc.setFont("courier", "normal");
+    doc.text( 'Deudor', 10, 70 )
+
+    doc.line(120, 65, 180, 65);
+    doc.text( 'Firma validez', 120, 70 )
+
+    doc.save(`${nombre}-${apellido}.pdf`);
   }
 }
