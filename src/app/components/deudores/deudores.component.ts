@@ -61,8 +61,7 @@ export class DeudoresComponent implements OnInit {
       }
     } )
   }
-  generarPdf(nombre: string, apellido:string, monto:string){
-    const nombreCompleto = `${nombre} ${apellido}`
+  generarPdf(nombre: string, apellido:string, monto:string, rut:string){
 
     const doc = new jspdf();
 
@@ -73,8 +72,8 @@ export class DeudoresComponent implements OnInit {
     doc.text(`$ ${monto}`, 160, 10);
 
     doc.setFontSize(16);
-    doc.text( nombreCompleto, 10, 60 )
-    doc.line(10, 65, 65, 65);
+    doc.text( `${rut} ${apellido}`, 10, 60 )
+    doc.line(10, 65, 75, 65);
     doc.setFontSize(14);
     doc.setFont("courier", "normal");
     doc.text( 'Deudor', 10, 70 )
