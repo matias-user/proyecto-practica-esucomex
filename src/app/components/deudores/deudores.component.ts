@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 @Component({
   selector: 'app-deudores',
   templateUrl: './deudores.component.html',
-  styleUrls: ['./deudores.component.css']
 })
 export class DeudoresComponent implements OnInit {
 
@@ -55,7 +54,8 @@ export class DeudoresComponent implements OnInit {
   }
   verUsuarioAdmin(){
     this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
-      if( usuario?.email?.toString() == 'admin@test.cl' ){
+      if( usuario?.email?.toString() == 'admin@admin.cl' ||
+      usuario?.email?.toString() == 'admin.usuario@admin.cl'  ){
         this.usuarioAdmin = true;
       }else{
         return;

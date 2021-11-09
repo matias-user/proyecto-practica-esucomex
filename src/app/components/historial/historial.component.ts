@@ -65,7 +65,8 @@ export class HistorialComponent implements OnInit {
   }
   verUsuarioAdmin(){
     this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
-      if( usuario?.email?.toString() == 'admin@test.cl' ){
+      if( usuario?.email?.toString() == 'admin@admin.cl' || 
+      usuario?.email?.toString() ==  'admin.usuario@admin.cl'){
         this.usuarioAdmin = true;
       }
     } )
