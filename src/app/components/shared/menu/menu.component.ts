@@ -20,12 +20,13 @@ export class MenuComponent implements OnInit {
       {label:'Inicio',icon:'pi pi-home',routerLink:['/app/home']},
       {label:'Deudores',icon:'pi pi-user',routerLink:['/app/deudores']},
       {label:'Historial',icon:'pi pi-folder',routerLink:['/app/historial']},
-      { label: 'Cerrar Sesion',icon:'pi pi-sign-in',command: () => this.cerrarSesion() }
+      { label: 'Cerrar Sesion',icon:'pi pi-sign-in',command: () => this.cerrarSesion() },
+
     ]
   }
   cerrarSesion(){
     this.authServ.logout();
     this.router.navigate(['/'])
-    console.log('hola')
   }
+  
 }

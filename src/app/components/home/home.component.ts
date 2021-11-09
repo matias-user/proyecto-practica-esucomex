@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { FireService } from '../services/fire.service';
 
 @Component({
@@ -8,12 +9,15 @@ import { FireService } from '../services/fire.service';
 })
 export class HomeComponent implements OnInit {
 
-  gastos:number = 0;
-  abonos:number = 0;
-  enCaja:number = 0;
-  fecha:number = Date.now();
+  gastos:number       = 0;
+  abonos:number       = 0;
+  enCaja:number       = 0;
+  fecha:number        = Date.now();
+  usuarioAdmin:boolean = false;
   valorGrafica: number | string = 0;
-  constructor( private servicioFire: FireService ) { }
+
+  constructor( private servicioFire: FireService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.calcularTotales();
@@ -43,5 +47,12 @@ export class HomeComponent implements OnInit {
   calcularEnCaja( monto: number, bandera: boolean){
     if( bandera)this.enCaja += monto; 
     else this.enCaja -= monto;
+  }
+  verUsuarioAdmin(){
+    this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
+      if( usuario?.email?.toString() == 'admin@admin.cl' || usuario?.email?.toString() == 'admin.usuario@admin.cl' ){
+        this.usuarioAdmin = true;
+      }
+    } )
   }
 }

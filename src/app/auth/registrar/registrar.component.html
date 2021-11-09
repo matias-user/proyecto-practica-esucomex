@@ -1,0 +1,29 @@
+<div class="flex mt-8 justify-content-center align-content-center" >
+    <p-card>
+        <ng-template pTemplate="header">
+            Registro
+        </ng-template>
+        
+        <form [formGroup]="miFormulario" >
+            <span class="p-float-label">
+                <input formControlName="email" id="float-input" type="email" pInputText> 
+                <label for="float-input">Correo</label>
+            </span>
+            <span class="mt-2 p-float-label">
+                <input formControlName="pass" id="float-input2" type="password" pInputText> 
+                <label for="float-input2">Contraseña</label>
+            </span>
+                        
+        </form>
+
+        <ng-template pTemplate="footer">
+            <button pButton type="button" (click)="guardar()" 
+                class="p-button-success" label="Guardar" >
+            </button>
+            <button pButton type="button" class="ml-2 " 
+                    label="Volver Home" [routerLink]="['/app/home']" >
+        </button>
+        </ng-template>
+    </p-card>
+</div>
+<p-toast></p-toast>

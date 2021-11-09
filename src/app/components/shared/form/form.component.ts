@@ -11,6 +11,8 @@ import { FireService } from '../../services/fire.service';
 })
 export class FormComponent implements OnInit {
 
+  presionadoBoton:boolean = false;
+
   miFormulario: FormGroup = this.formBuilder.group({
     ingreso: [ 0, [ Validators.required, Validators.min(1)]],
   })
@@ -21,6 +23,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   esValido(){
     return this.miFormulario.controls.ingreso.errors
             && this.miFormulario.controls.ingreso.touched
@@ -28,6 +31,7 @@ export class FormComponent implements OnInit {
   ingresar(){
     if( this.miFormulario.invalid ){
       this.miFormulario.markAllAsTouched();
+      this.presionadoBoton = true;
       return;
     }
 

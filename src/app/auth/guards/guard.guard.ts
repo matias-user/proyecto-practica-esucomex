@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot,UrlSegment } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot,UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, switchMap } from "rxjs/internal/operators";
 
@@ -10,7 +10,8 @@ import { take, switchMap } from "rxjs/internal/operators";
 export class GuardGuard implements  CanActivate {
 
 
-  constructor( private auth: AngularFireAuth ){}
+  constructor( private auth: AngularFireAuth,
+            private router: Router ){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean > | boolean  {
@@ -22,7 +23,9 @@ export class GuardGuard implements  CanActivate {
             return true;
           }else{
             console.log('no autenticado');
+            this.router.navigate(['auth/login'])
             return false;
+            
           }
         } )
        )

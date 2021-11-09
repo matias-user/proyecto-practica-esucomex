@@ -68,8 +68,6 @@ export class HistorialComponent implements OnInit {
       if( usuario?.email?.toString() == 'admin@test.cl' ){
         this.usuarioAdmin = true;
       }
-      console.log( usuario?.email )
-
     } )
   }
   editarIngreso(){

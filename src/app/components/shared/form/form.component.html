@@ -16,18 +16,13 @@
         </span>  
     </div>
     <div class="mt-1">
-        <p-message *ngIf="esValido()" 
+        <p-message  *ngIf="esValido() && presionadoBoton" 
             severity="error" text="Debe ingresar un monto superior a 1 peso">
         </p-message>
     </div>
 </div>
 </form>
-<div class="grid p-fluid">
-    <div class="col-12 sm:col-8"></div>
-    <div class="col-12 sm:col-4">
-        <app-form-dos ></app-form-dos>
-    </div>
-</div>
+    <app-form-dos ></app-form-dos>
 
 <p-toast></p-toast>
 
