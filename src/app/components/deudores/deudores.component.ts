@@ -48,7 +48,7 @@ export class DeudoresComponent implements OnInit {
         }
     });
   }
-    cambiarEstado(id:string){
+  cambiarEstado(id:string){
     this.fireServ.editarIngreso(id).update({estado: false}) ;
   }
   verUsuarioAdmin(){

@@ -47,7 +47,6 @@ export class HistorialComponent implements OnInit {
   }
   eliminarIngreso(id:string){
     this.serviciosFire.eliminarIngreso(id).then( () => {
-      console.log('Se ha eliminado')
     }, error => console.log )
   }
   confirm(event: Event, id:string) {

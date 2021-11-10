@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FireService } from '../services/fire.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
   valorGrafica: number | string = 0;
 
   constructor( private servicioFire: FireService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.calcularTotales();
+    this.verUsuarioAdmin();
   }
 
   calcularTotales( ){
@@ -54,5 +56,27 @@ export class HomeComponent implements OnInit {
         this.usuarioAdmin = true;
       }
     } )
+  }
+  borrarTodo(){
+    
+    this.servicioFire.traerHistorial().subscribe( resp => {
+      for( let data of resp ){
+        let id = data.payload.doc.id;
+        
+        this.servicioFire.eliminarIngreso(id).catch(console.error)
+      }
+    } )
+  }
+  confirm(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target!,
+        message: '¿Estas seguro que deseas eliminar todos los registros?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.borrarTodo();
+        },
+        reject: () => {
+        }
+    });
   }
 }

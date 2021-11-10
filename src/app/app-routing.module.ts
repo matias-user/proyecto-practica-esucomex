@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path:'registro',
     component: RegistrarComponent,
-    canActivate: [GuardGuard]
+    // canActivate: [GuardGuard]
   },
   {
     path:'**',

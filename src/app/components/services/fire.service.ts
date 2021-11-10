@@ -28,4 +28,5 @@ export class FireService {
   eliminarIngreso( id:string ){
     return this.afs.collection('ingresos').doc(id).delete();
   }
+
 }
