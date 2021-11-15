@@ -31,7 +31,7 @@ import { ActivosPipe } from './pipes/activos.pipe';
     PrimeNgModule,
     FormsModule,
     ComponentsRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
     
   ],
   exports:[

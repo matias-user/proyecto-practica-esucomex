@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   loginFallido:boolean = false;
 
@@ -17,9 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor( private authService: AuthService, private route: Router ) { }
 
-
-  ngOnInit(): void {
-  }
   ingresar(){
     const { email, password } = this.usuario;
     this.authService.login(email, password).then(res => {

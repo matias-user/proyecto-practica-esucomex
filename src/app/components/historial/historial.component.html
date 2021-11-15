@@ -3,7 +3,11 @@
         Historial
     </ng-template>   
     <p-table  styleClass="p-datatable-striped p-datatable-sm" [value]="listaIngresos" 
-        responsiveLayout="scroll" [scrollable]="true" scrollHeight="600px" >
+                [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+                [rowsPerPageOptions]="[10,25,50]"
+                responsiveLayout="scroll" [scrollable]="true" scrollHeight="500px">
+
         <ng-template  pTemplate="header">
             <tr >
                 <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
@@ -13,6 +17,7 @@
                 <th *ngIf="usuarioAdmin">Acción</th>
             </tr>
         </ng-template>
+
         <ng-template pTemplate="body" let-product>
             <tr>
                 <td>{{product.fecha | date}}</td>
@@ -39,6 +44,7 @@
                 </td>
             </tr>
         </ng-template>
+        
     </p-table>
     <p-confirmPopup></p-confirmPopup>
 </p-card>

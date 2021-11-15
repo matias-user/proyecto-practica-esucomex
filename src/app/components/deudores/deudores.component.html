@@ -3,7 +3,11 @@
         Deudores
     </ng-template>
     
-    <p-table [value]="listaDeudores |activos " responsiveLayout="scroll" styleClass="p-datatable-striped p-datatable-sm"  [scrollable]="true" scrollHeight="600px">
+    <p-table [value]="listaDeudores |activos " responsiveLayout="scroll" 
+            styleClass="p-datatable-striped p-datatable-sm"  [scrollable]="true" [rows]="10" 
+            scrollHeight="400px" [paginator]="true" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} deudores"
+            [rowsPerPageOptions]="[10,25,50]" >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>

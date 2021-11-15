@@ -3,7 +3,7 @@ import { ConfirmationService} from 'primeng/api';
 import { Ingreso } from '../interfaces/Ingreso';
 import { FireService } from '../services/fire.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import jspdf from "jspdf";
+import { jsPDF } from "jspdf";
 
 @Component({
   selector: 'app-deudores',
@@ -63,7 +63,7 @@ export class DeudoresComponent implements OnInit {
   }
   generarPdf(nombre: string, apellido:string, monto:string, rut:string){
 
-    const doc = new jspdf();
+    const doc = new jsPDF();
 
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");

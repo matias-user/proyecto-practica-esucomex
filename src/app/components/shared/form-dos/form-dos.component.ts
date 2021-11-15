@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FireService } from '../../services/fire.service';
@@ -10,7 +10,7 @@ import { FireService } from '../../services/fire.service';
 p {margin: 0;}.confirmation-content {display: flex;align-items: center;justify-content: center;
   }:host ::ng-deep .p-dialog .p-button {min-width: 6rem;}`]
 })
-export class FormDosComponent implements OnInit {
+export class FormDosComponent {
 
   patronRut: string = '^[0-9]+-[0-9kK]{1}$';
   display: boolean = false;
@@ -27,8 +27,6 @@ export class FormDosComponent implements OnInit {
     private fire: FireService,
     private messageService: MessageService) { }
 
-  ngOnInit(): void {
-  }
   guardar(){
     if( this.miFormulario.invalid ){
       this.miFormulario.markAllAsTouched();

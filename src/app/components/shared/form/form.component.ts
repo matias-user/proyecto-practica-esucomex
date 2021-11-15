@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FireService } from '../../services/fire.service';
@@ -6,10 +6,9 @@ import { FireService } from '../../services/fire.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styles: [
-  ]
+
 })
-export class FormComponent implements OnInit {
+export class FormComponent  {
 
   presionadoBoton:boolean = false;
 
@@ -20,9 +19,6 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
     private afs: FireService,
     private messageService: MessageService) { }
-
-  ngOnInit(): void {
-  }
 
   esValido(){
     return this.miFormulario.controls.ingreso.errors

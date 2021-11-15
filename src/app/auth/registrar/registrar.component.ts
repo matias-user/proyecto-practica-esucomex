@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   styles: [
   ]
 })
-export class RegistrarComponent implements OnInit {
+export class RegistrarComponent {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
@@ -20,8 +20,6 @@ export class RegistrarComponent implements OnInit {
     pass: [ '', [Validators.required, Validators.minLength(5)] ]
   })
 
-  ngOnInit(): void {
-  }
   guardar(){
     this.authService.registrarUsuario( 
       this.miFormulario.get('email')!.value,

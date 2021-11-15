@@ -4,9 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
-
 import { environment } from 'src/environments/environment';
-
 import { ComponentesModule } from './components/componentes.module';
 import { ComponentsRoutingModule } from './components/components-routing.module';
 import { AuthModule } from './auth/auth.module';

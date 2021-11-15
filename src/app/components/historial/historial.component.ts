@@ -79,4 +79,6 @@ export class HistorialComponent implements OnInit {
     this.display = true;
     this.id = id;
   }
+  
+
 }
