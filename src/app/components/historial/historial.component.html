@@ -1,6 +1,6 @@
 <p-card>
     <ng-template pTemplate="subtitle">
-        Historial
+        <h2 class="text-primary" >Historial</h2>
     </ng-template>   
     <p-table #dt styleClass="p-datatable-striped p-datatable-sm" [value]="listaIngresos" 
                 [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
@@ -46,7 +46,7 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="p-d-flex">
-                <p>Exportar a excel</p>
+                <p class="text-green-600" >Exportar a excel</p>
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" 
                 class="p-button-success p-mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
                 
