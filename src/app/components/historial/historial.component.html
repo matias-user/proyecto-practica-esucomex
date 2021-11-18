@@ -1,13 +1,21 @@
 <p-card>
     <ng-template pTemplate="subtitle">
-        <h2 class="text-primary" >Historial</h2>
+        <h2 class="text-primary m-0" >Historial</h2>
+        <hr class="m-0" >
     </ng-template>   
     <p-table #dt styleClass="p-datatable-striped p-datatable-sm" [value]="listaIngresos" 
                 [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
                 [rowsPerPageOptions]="[10,25,50]"
-                responsiveLayout="scroll" [scrollable]="true" scrollHeight="500px">
+                responsiveLayout="scroll" [scrollable]="true" scrollHeight="450px">
         
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex">
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" 
+                class="p-button-success p-mr-2"  pTooltip="Exportar Excel" tooltipPosition="bottom"></button>
+            </div>
+        </ng-template>
+
         <ng-template  pTemplate="header">
             <tr >
                 <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
@@ -44,14 +52,7 @@
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="footer">
-            <div class="p-d-flex">
-                <p class="text-green-600" >Exportar a excel</p>
-                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" 
-                class="p-button-success p-mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
-                
-            </div>
-        </ng-template>
+        
     </p-table>
     <p-confirmPopup></p-confirmPopup>
 </p-card>

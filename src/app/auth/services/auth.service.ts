@@ -6,17 +6,16 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
 
-
   constructor( private afa: AngularFireAuth) { }
+
 
   async login(email:string, password: string){
     try {
       return await this.afa.signInWithEmailAndPassword( email, password )
-        .catch( console.log ) ;
 
     } catch (error) {
-      console.log( 'No existe el correo',error );
-      return null;
+      console.log( 'No existe el correo' );
+      return;
     }
   }
   registrarUsuario(email:string, pass:string){
@@ -30,7 +29,7 @@ export class AuthService {
   }
 
   obtenerUsuarioLogeado(){
-    return this.afa.authState;
+    return this.afa.authState
   }
   logout(){
     return this.afa.signOut();

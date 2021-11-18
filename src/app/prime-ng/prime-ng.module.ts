@@ -15,6 +15,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import {TableModule} from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import {ToastModule} from 'primeng/toast';
+import {InputSwitchModule} from 'primeng/inputswitch';
 // Api Prime
 import { ConfirmationService, MessageService } from "primeng/api";
 
@@ -35,7 +36,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
     PanelMenuModule,
     TableModule,
     TagModule,
-    ToastModule
+    ToastModule,
+    InputSwitchModule
   ],
   providers:[ConfirmationService, MessageService]
 })

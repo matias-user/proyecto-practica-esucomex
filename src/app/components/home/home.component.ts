@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FireService } from '../services/fire.service';
+import { map } from 'rxjs/operators';
+import { Empleado } from '../interfaces/empleado';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ export class HomeComponent implements OnInit {
   fecha:number        = Date.now();
   usuarioAdmin:boolean = false;
   valorGrafica: number | string = 0;
+  nombreUsuario:string | null = '';
 
   constructor( private servicioFire: FireService,
               private authService: AuthService,
@@ -23,6 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.calcularTotales();
     this.verUsuarioAdmin();
+    this.esAdministrador();
   }
 
   calcularTotales( ){
@@ -52,13 +56,22 @@ export class HomeComponent implements OnInit {
   }
   verUsuarioAdmin(){
     this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
-      if( usuario?.email?.toString() == 'admin@admin.cl' || usuario?.email?.toString() == 'admin.usuario@admin.cl' ){
-        this.usuarioAdmin = true;
-      }
-    } )
+      if( usuario ){
+        this.nombreUsuario = usuario!.email;
+      }else return;
+      })
+  }
+  esAdministrador(){
+    this.servicioFire.traerAdministrador( )
+      .subscribe( array => {
+        array.forEach( valor =>{
+          if( valor.email == this.nombreUsuario ){
+            if( valor.administrador ) this.usuarioAdmin = true; 
+          }}
+         )
+      })
   }
   borrarTodo(){
-    
     this.servicioFire.traerHistorial().subscribe( resp => {
       for( let data of resp ){
         let id = data.payload.doc.id;

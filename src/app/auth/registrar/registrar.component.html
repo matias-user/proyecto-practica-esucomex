@@ -13,17 +13,19 @@
                 <input formControlName="pass" id="float-input2" type="password" pInputText> 
                 <label for="float-input2">Contraseña</label>
             </span>
-                        
+            <div *ngIf="usuarioAdmin" class="mt-2">
+                <p class="text-primary" >Administrador</p>
+                <p-inputSwitch  formControlName="administrador" ></p-inputSwitch>
+            </div>
+            <div class="mt-2">
+                <button pButton type="button" (click)="guardar()" 
+                        class="p-button-success" label="Guardar" >
+                </button>
+                <button pButton type="button" class="ml-2 " 
+                            label="Volver Login" [routerLink]="['/login']" >
+                </button>
+            </div>
         </form>
-
-        <ng-template pTemplate="footer">
-            <button pButton type="button" (click)="guardar()" 
-                class="p-button-success" label="Guardar" >
-            </button>
-            <button pButton type="button" class="ml-2 " 
-                    label="Volver Home" [routerLink]="['/app/home']" >
-        </button>
-        </ng-template>
     </p-card>
 </div>
 <p-toast></p-toast>

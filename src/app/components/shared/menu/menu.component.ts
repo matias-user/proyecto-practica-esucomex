@@ -20,7 +20,9 @@ export class MenuComponent implements OnInit {
       {label:'Inicio',icon:'pi pi-home',routerLink:['/app/home']},
       {label:'Deudores',icon:'pi pi-user',routerLink:['/app/deudores']},
       {label:'Historial',icon:'pi pi-folder',routerLink:['/app/historial']},
+      { label: 'Registrar usuario',icon:'pi pi-plus',routerLink:['/registro'] },
       { label: 'Cerrar Sesion',icon:'pi pi-sign-in',command: () => this.cerrarSesion() },
+      
 
     ]
   }

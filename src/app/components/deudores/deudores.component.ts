@@ -13,7 +13,7 @@ export class DeudoresComponent implements OnInit {
 
   listaDeudores: Ingreso[] = [];
   usuarioAdmin: boolean= false;
-  
+  nombreUsuario:string | null = '';
   constructor(private fireServ: FireService,
     private confirmationService: ConfirmationService,
     private authService: AuthService) { }
@@ -21,6 +21,7 @@ export class DeudoresComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerDeudores();
     this.verUsuarioAdmin();
+    this.esAdministrador();
   }
 
   obtenerDeudores(){
@@ -51,15 +52,23 @@ export class DeudoresComponent implements OnInit {
   cambiarEstado(id:string){
     this.fireServ.editarIngreso(id).update({estado: false}) ;
   }
+  //Con estas dos funciones puedo ocultar el boton para quitar un deudor
   verUsuarioAdmin(){
     this.authService.obtenerUsuarioLogeado().subscribe( usuario => {
-      if( usuario?.email?.toString() == 'admin@admin.cl' ||
-      usuario?.email?.toString() == 'admin.usuario@admin.cl'  ){
-        this.usuarioAdmin = true;
-      }else{
-        return;
-      }
-    } )
+      if( usuario){
+        this.nombreUsuario = usuario!.email;
+      }else return;
+      })
+  }
+  esAdministrador(){
+    this.fireServ.traerAdministrador()
+      .subscribe( array => {
+        array.forEach( valor =>{
+          if( valor.email == this.nombreUsuario ){
+            if( valor.administrador ) this.usuarioAdmin = true; 
+          }}
+         )
+      })
   }
   generarPdf(nombre: string, apellido:string, monto:string, rut:string){
 

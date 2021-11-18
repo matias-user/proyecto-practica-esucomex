@@ -21,7 +21,7 @@ export class LoginComponent {
     const { email, password } = this.usuario;
     this.authService.login(email, password).then(res => {
       if( res?.user?.email !== undefined){
-
+        console.clear();
         this.route.navigate(['./app/home'])
         this.loginFallido = false;
       }else{
@@ -29,7 +29,6 @@ export class LoginComponent {
         setTimeout(() => {
           this.loginFallido = false;
         }, 5000);
-        
       }
     })
   }

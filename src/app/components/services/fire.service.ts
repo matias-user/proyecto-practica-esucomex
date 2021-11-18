@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { Empleado } from '../interfaces/empleado';
 import { Ingreso } from '../interfaces/Ingreso';
 
 
@@ -28,5 +29,11 @@ export class FireService {
   eliminarIngreso( id:string ){
     return this.afs.collection('ingresos').doc(id).delete();
   }
-
+  guardarCuenta( empleado: Empleado ){
+    return this.afs.collection('empleados').add( empleado );
+  }
+  traerAdministrador():Observable<any[]>{
+    return this.afs.collection('empleados').valueChanges();
+  }
+  
 }

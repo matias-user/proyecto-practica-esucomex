@@ -16,6 +16,7 @@ export class HistorialComponent implements OnInit {
 
   listaIngresos: Ingreso[] = [];
   usuarioAdmin: boolean= false;
+  nombreUsuario:string | null = '';
   display: boolean = false;
   id:string = '';
 
@@ -32,6 +33,7 @@ export class HistorialComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerDatos();
     this.verUsuarioAdmin();
+    this.esAdministrador();
   }
   obtenerDatos(){
     this.serviciosFire.traerHistorial().subscribe( data => {
@@ -62,14 +64,7 @@ export class HistorialComponent implements OnInit {
         }
     });
   }
-  verUsuarioAdmin(){
-    this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
-      if( usuario?.email?.toString() == 'admin@admin.cl' || 
-      usuario?.email?.toString() ==  'admin.usuario@admin.cl'){
-        this.usuarioAdmin = true;
-      }
-    } )
-  }
+
   editarIngreso(){
     this.serviciosFire.editarIngreso(this.id).update(this.miFormulario.value);
     this.messageService.add({severity:'success', summary:'Modificacion', detail:'Se ha modificado correctamente'})
@@ -78,6 +73,24 @@ export class HistorialComponent implements OnInit {
   showDialog(id: string) {
     this.display = true;
     this.id = id;
+  }
+  //Estas dos funciones oculto boton para editar y eliminar registro solo admins pueden.
+  verUsuarioAdmin(){
+    this.authServ.obtenerUsuarioLogeado().subscribe( usuario => {
+      if( usuario ){
+        this.nombreUsuario = usuario!.email;
+      }else return;
+      })
+  }
+  esAdministrador(){
+    this.serviciosFire.traerAdministrador()
+      .subscribe( array => {
+        array.forEach( valor =>{
+          if( valor.email == this.nombreUsuario ){
+            if( valor.administrador ) this.usuarioAdmin = true; 
+          }}
+         )
+      })
   }
   //Exports excel con PrimeNG
   exportExcel() {
